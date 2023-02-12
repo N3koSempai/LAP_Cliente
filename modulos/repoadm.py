@@ -4,7 +4,7 @@ from zipfile import ZipFile
 import shutil
 from os import remove, chdir, mkdir
 import errno
-
+import json
 class repoAdm():
     
     
@@ -47,3 +47,17 @@ class repoAdm():
                 os.remove('../repo/main.zip')
             else:
              raise("sin respuesta del servidor de repositorios")
+             
+    def jsonSearch(self, library):
+        #abriendo archivo repo tipo json previamente descargado
+        with open("./repo/main.json", 'r') as repolist:
+            repolib = json.loads(repolist.read())
+        try:
+            # buscando nombre de la libreria
+            for i in repolib.keys():
+                if i == library:
+                    print(repolib[i])
+                else:
+                    print("no encontrada")
+        except:
+            print("error en busqueda de la libreria")    
