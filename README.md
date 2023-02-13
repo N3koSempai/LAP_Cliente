@@ -4,9 +4,9 @@ Un administrador de paquetes centrado en la facilidad y sencilles de uso para el
 
 #### LAP esta en version alpha y abierto a colaboradores y donaciones
 
-
-
 ### principales comandos de LAP
+
+
 
 - este comando descarga un archivo tipo repositorio donde se indica la ubicacion de las librerias disponibles actualmente.
 
@@ -14,12 +14,8 @@ Un administrador de paquetes centrado en la facilidad y sencilles de uso para el
 LAP actualizar
 ```
 
-
-
 - este comando instala una libreria solicitada si esta se encuentra disponible en los repositorios
 
 ```shell
 LAP instalar <nombre-de-la-libreria>==<version>
 ```
-
-
