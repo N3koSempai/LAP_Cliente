@@ -1,5 +1,7 @@
 from modulos.repoadm import repoAdm
+import modulos.paqadm
 import sys
+
 
 repo = repoAdm()
 
@@ -10,3 +12,5 @@ elif sys.argv[1] == 'instalar':
         repo.jsonSearch(sys.argv[2])
     else:
         print('escribe algun paquete')
+
+
