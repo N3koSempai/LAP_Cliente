@@ -1,6 +1,7 @@
 import urllib.request
 import urllib.error
 import errno
+import os
 from os import remove, chdir, mkdir
 from zipfile import ZipFile
 
@@ -11,13 +12,15 @@ class paqAdm():
     def __init__(self):
         pass
         
-    def getlibrary(self,name, liburl, version='latest'):
+    def getlibrary(self, actual_dir ,name, liburl, version='v0.0.3'):
         """funcion para manejar la descarga de la libreria comprimida y su descompresion y ubicacion"""
         # necesario para acceder al espacio release de github
         aux = '/releases/download/'
         # conformando la peticion con todas las variantes
         url = f"{liburl}{aux}{version}/{name}.zip"
-        print(url)
+        print(actual_dir)
+        chdir(os.path.dirname(os.path.realpath(f'{actual_dir}/test')))
+        print(os.getcwd())
         try:
             # creando directorio para almacenar los paquetes en local
             mkdir('modulos')
@@ -36,7 +39,7 @@ class paqAdm():
                 response = urllib.request.urlopen(url)
             except urllib.error.HTTPError:
                 return 'error en la version a la que llamas'
-        
+
         with open(f'./modulos/{name}.zip', 'wb') as lib:
             # creando archivo comprimido temporal
             lib.write(response.read())
@@ -56,7 +59,7 @@ class paqAdm():
         finally:
             # eliminando el comprimido temporal
             remove(f'./modulos/{name}.zip')
-    
+            
     
     
     
