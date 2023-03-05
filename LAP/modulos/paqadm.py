@@ -24,7 +24,7 @@ class paqAdm():
         
             url = f"{liburl}{aux}{version}/{name}.zip"
         # conformando la peticion con todas las variantes
-        chdir(os.path.dirname(os.path.realpath(f'{actual_dir}')))
+        chdir(os.path.realpath(f'{actual_dir}'))
         #print("path actual es" + os.getcwd())
         try:
             # creando directorio para almacenar los paquetes en local
