@@ -17,4 +17,5 @@ elif sys.argv[1] == 'instalar':
     else:
         print('escribe algun paquete')
 
-
+else:
+        print(f"orden no valida, el error puede estar en el argumento '{sys.argv[1]}'")
