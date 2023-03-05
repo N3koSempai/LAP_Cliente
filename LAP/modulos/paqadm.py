@@ -12,15 +12,20 @@ class paqAdm():
     def __init__(self):
         pass
         
-    def getlibrary(self, actual_dir ,name, liburl, version='v0.0.3'):
+    def getlibrary(self, actual_dir ,name, liburl, version='latest'):
         """funcion para manejar la descarga de la libreria comprimida y su descompresion y ubicacion"""
         # necesario para acceder al espacio release de github
-        aux = '/releases/download/'
+        if version == 'latest':
+            aux = '/releases/latest/download'
+            url = f"{liburl}{aux}/{name}.zip"
+        else:
+            aux = '/releases/download/'
         # conformando la peticion con todas las variantes
-        url = f"{liburl}{aux}{version}/{name}.zip"
-        print(actual_dir)
-        chdir(os.path.dirname(os.path.realpath(f'{actual_dir}/test')))
-        print(os.getcwd())
+        
+            url = f"{liburl}{aux}{version}/{name}.zip"
+        # conformando la peticion con todas las variantes
+        chdir(os.path.dirname(os.path.realpath(f'{actual_dir}')))
+        #print("path actual es" + os.getcwd())
         try:
             # creando directorio para almacenar los paquetes en local
             mkdir('modulos')
@@ -31,6 +36,8 @@ class paqAdm():
             # continuando en caso de que el directorio modulos ya exista
             if e.errno != errno.EEXIST:
                 print(e)
+        except zipfile.BadZipFile as e:
+            print("error nombre de la libreria")
         except urllib.error.HTTPError:
                 # manejando error de conexion (ejemplo respuesta 404)
                 return 'error en la version a la que llamas'

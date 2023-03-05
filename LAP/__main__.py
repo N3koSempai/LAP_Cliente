@@ -10,12 +10,16 @@ print(actual_dir)
 if sys.argv[1] == 'actualizar':
     res = repo.getrepo()
     print(res)
+    
+    
 elif sys.argv[1] == 'instalar':
     if sys.argv[2] != None:
+        # buscar libreria que corresponda en los repos internos
         lib_url = repo.jsonSearch(actual_dir,sys.argv[2])
+        # obtener libreria comprimida
         paq.getlibrary(actual_dir, sys.argv[2], lib_url)
     else:
         print('escribe algun paquete')
-
+# captura ordenes que no corresponden a ninguna valida
 else:
-        print(f"orden no valida, el error puede estar en el argumento '{sys.argv[1]}'")
+    print(f"orden no valida, el error puede estar en el argumento '{sys.argv[1]}'")
