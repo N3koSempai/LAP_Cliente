@@ -1,7 +1,7 @@
 import urllib.request
 import urllib.error
 import errno
-import os
+import os, sys
 from os import remove, chdir, mkdir
 from zipfile import ZipFile
 
@@ -37,9 +37,8 @@ class paqAdm():
 
         try:
             # descargando release comprimido
-            print(url)
             response = urllib.request.urlopen(url)
-            print(response.getcode())
+            
             if response.getcode() != 200:
                 return "error. verifique que a escrito la version correctamente"
         except urllib.error.HTTPError as e:
@@ -73,6 +72,6 @@ class paqAdm():
     
 if __name__ == '__main__':
     p = paqAdm()
-    p.getlibrary('lat_Libreria_prueba','https://github.com/N3koSempai/lat_libreria_prueba')
+    p.getlibrary(sys.argv[1],sys.argv[2])
     
     
