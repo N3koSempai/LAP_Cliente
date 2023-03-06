@@ -17,7 +17,11 @@ elif sys.argv[1] == 'instalar':
         # buscar libreria que corresponda en los repos internos
         lib_url = repo.jsonSearch(actual_dir,sys.argv[2])
         # obtener libreria comprimida
-        paq.getlibrary(actual_dir, sys.argv[2], lib_url)
+        if sys.argv[3] != None:
+            print("aqui")
+            paq.getlibrary(actual_dir, sys.argv[2], lib_url, sys.argv[3])
+        else:
+            paq.getlibrary(actual_dir, sys.argv[2], lib_url)
     else:
         print('escribe algun paquete')
 # captura ordenes que no corresponden a ninguna valida

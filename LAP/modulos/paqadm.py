@@ -29,23 +29,22 @@ class paqAdm():
         try:
             # creando directorio para almacenar los paquetes en local
             mkdir('modulos')
-            # descargando release comprimido
-            response = urllib.request.urlopen(url)
-            
+
         except OSError as e:
             # continuando en caso de que el directorio modulos ya exista
             if e.errno != errno.EEXIST:
                 print(e)
-        except zipfile.BadZipFile as e:
-            print("error nombre de la libreria")
-        except urllib.error.HTTPError:
-                # manejando error de conexion (ejemplo respuesta 404)
-                return 'error en la version a la que llamas'
-        finally:
-            try:
-                response = urllib.request.urlopen(url)
-            except urllib.error.HTTPError:
-                return 'error en la version a la que llamas'
+
+        try:
+            # descargando release comprimido
+            print(url)
+            response = urllib.request.urlopen(url)
+            print(response.getcode())
+            if response.getcode() != 200:
+                return "error. verifique que a escrito la version correctamente"
+        except urllib.error.HTTPError as e:
+             print("version de la libreria incorrecta")
+             return False
 
         with open(f'./modulos/{name}.zip', 'wb') as lib:
             # creando archivo comprimido temporal
