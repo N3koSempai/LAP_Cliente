@@ -10,7 +10,7 @@ class repoAdm():
     
     def __init__(self):
         # definiendo el origen de los repositorios
-        self.url = urllib.request.urlopen('https://github.com/N3koSempai/LAP_Directory/archive/refs/heads/main.zip')
+        self.url = urllib.request.Request('https://github.com/N3koSempai/LAP_Directory/archive/refs/heads/main.zip')
         
     def getrepo(self, direct):
         # estableciendo directorio actual que es dentro de modulos

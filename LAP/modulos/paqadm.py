@@ -17,12 +17,12 @@ class paqAdm():
         # necesario para acceder al espacio release de github
         if version == 'latest':
             aux = '/releases/latest/download'
-            url = urllib.request.urlopen(f"{liburl}{aux}/{name}.zip")
+            url = urllib.request.Request(f"{liburl}{aux}/{name}.zip")
         else:
             aux = '/releases/download/'
         # conformando la peticion con todas las variantes
         
-            url = urllib.request.urlopen(f"{liburl}{aux}{version}/{name}.zip")
+            url = urllib.request.Request(f"{liburl}{aux}{version}/{name}.zip")
         # conformando la peticion con todas las variantes
         chdir(os.path.realpath(f'{actual_dir}'))
         #print("path actual es" + os.getcwd())
