@@ -2,8 +2,6 @@
 
 [![CodeFactor](https://www.codefactor.io/repository/github/n3kosempai/lap_cliente/badge)](https://www.codefactor.io/repository/github/n3kosempai/lap_cliente)
 
-
-
 Un administrador de paquetes centrado en la facilidad y sencilles de uso para el usuario. Se intenta automatizar la mayor cantidad de cosas posibles, ser descriptivo con las dependencias y evitar soluciones raras como los espacios virtuales de python optando por la declaracion de dependencias y ubicacion de archivos en base a un arbol de directorios (como npm).
 
 #### LAP esta en version alpha y abierto a colaboradores y donaciones
@@ -30,15 +28,22 @@ python3 -m LAP instalar <nombre-libreria> v3.0.0
 
 ### Como contribuir:
 
-Usted ppuede contribuir al desarrollo de esta herramienta como sponsor a traves de donaciones o como desarrollador.
+Usted puede contribuir al desarrollo de esta herramienta como sponsor a traves de donaciones o como desarrollador.
 
 donaciones:
 
+puedes enviar tus donaciones a las siguientes direcciones de criptomonedas. (algunas redes permiten escribir una nota en la trasaccion para que dejes un mensaje)
+
+| criptomoneda  | direccion                                                         |
+| ------------- | ----------------------------------------------------------------- |
+| bitcoin:      | 13bTVYTvUgPBX12cowvrVBzwf4LaqR6rFp                                |
+| litecoin:     | LgeBgdRwvmnj1y7heL5xueZg8DxuhmLhZj                                |
+| TON (native): | EQBCIudz4Utv_0wdUGtkpEjW9_-R0DfPq35rl2aizaFA6iwx                  |
+| NANO          | nano_1gnfjonzfsgdf5kbixfamnaeq784o5gbj6tsdpof7cioriyxodx5co8818kt |
 
 
 
-
-como desarrollar:
+como desarrollador:
 
 para comenzar a desarrollar por su parte en esta herramienta siga estos pasos.
 
