@@ -30,8 +30,8 @@ class repoAdm():
                 print(e)
             else:
                 pass
-        except:
-            print("error")
+        except Exception as err:
+            print(f"error {err}")
         finally:
             # verificando respuesta correcta del servidor
             if response.status == 200:    
@@ -63,5 +63,5 @@ class repoAdm():
                     return repolib[i]
                 else:
                     print("no encontrada")
-        except:
+        except Exception:
             print("error en busqueda de la libreria")    
