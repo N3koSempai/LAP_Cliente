@@ -77,4 +77,4 @@ para comenzar a desarrollar por su parte en esta herramienta siga estos pasos.
    
    sobrescriba los archivos en el repositorio clonado con los que usted modifico en su entorno virtual.
 
-5. si tiene alguna duda escribala dejelas en Issues y seran respondidas
+5. si tiene alguna duda hagamelas saber a traves de los Issues y seran respondidas
