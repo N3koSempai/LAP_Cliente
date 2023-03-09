@@ -12,9 +12,9 @@ class repoAdm():
         # definiendo el origen de los repositorios
         self.url = 'https://github.com/N3koSempai/LAP_Directory/archive/refs/heads/main.zip'
         
-    def getrepo(self):
+    def getrepo(self, direct):
         # estableciendo directorio actual que es dentro de modulos
-        chdir(os.path.dirname(os.path.realpath(__file__)))
+        chdir(direct)
         
         
         try:
@@ -22,7 +22,7 @@ class repoAdm():
             response = urllib.request.urlopen(self.url)
             data = response.read()
             # creando directorio para repo
-            mkdir('../repo')
+            mkdir('repo')
             
         except OSError as e:
             #capturando excepcion en caso de que exista el directorio
@@ -35,16 +35,16 @@ class repoAdm():
         finally:
             # verificando respuesta correcta del servidor
             if response.status == 200:    
-                with open('../repo/main.zip', 'wb') as compress:
+                with open('repo/main.zip', 'wb') as compress:
                     #creando comprimido
                     compress.write(data)
-                zipx = ZipFile('../repo/main.zip', 'r')
+                zipx = ZipFile('repo/main.zip', 'r')
                 # extrayendo
-                zipx.extractall('../repo/')
+                zipx.extractall('repo/')
                 #ajustando carpetas y borrando temporales
-                shutil.move('../repo/LAP_Directory-main/main.json', '../repo/main.json')
-                shutil.rmtree('../repo/LAP_Directory-main')
-                os.remove('../repo/main.zip')
+                shutil.move('repo/LAP_Directory-main/main.json', 'repo/main.json')
+                shutil.rmtree('repo/LAP_Directory-main')
+                os.remove('repo/main.zip')
                 return "repositorios actualizados"
             else:
              raise("sin respuesta del servidor de repositorios")
@@ -54,7 +54,7 @@ class repoAdm():
         #ubicandome en directorio del script
         chdir(os.path.dirname(os.path.realpath(__file__)))
         print(os.getcwd())
-        with open("../repo/main.json", 'r') as repolist:
+        with open("repo/main.json", 'r') as repolist:
             repolib = json.loads(repolist.read())
         try:
             # buscando nombre de la libreria
