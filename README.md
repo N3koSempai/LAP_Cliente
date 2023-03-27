@@ -26,6 +26,33 @@ python3 -m LAP instalar <nombre-de-la-libreria>
 python3 -m LAP instalar <nombre-libreria> v3.0.0
 ```
 
+### Ejemplo de uso
+1- Nos situamos en un directorio y creamos la carpeta **prueba**.
+```shell
+mkdir prueba
+```
+
+2- En la carpeta previamente creada guardamos un archivo llamado **prueba.lat** y dentro de él ponemos lo siguiente:
+```Latino
+prueba = incluir("modulos\lat_libreria_prueba\main")
+imprimir("5 + 5: " .. prueba.suma(5, 5))
+```
+
+3- Usamos **LAP** para instalar **lat_libreria_prueba**.
+```shell
+python3 -m LAP instalar lat_libreria_prueba
+```
+
+4- Luego desde la terminal llamamos a **prueba.lat**.
+```shell
+latino prueba.lat
+```
+
+5- Y si todo está correcto podremos ver en la terminal lo siguiente:
+```
+5 + 5: 10
+```
+
 ### Como contribuir:
 
 Usted puede contribuir al desarrollo de esta herramienta como sponsor a traves de donaciones o como desarrollador.

@@ -1,77 +1,56 @@
 import urllib.request
 import urllib.error
 import errno
-import os, sys
+import shutil, sys
+from io import BytesIO
 from os import remove, chdir, mkdir
+from os.path import exists
 from zipfile import ZipFile
 
 
 class paqAdm():
-    
-    
-    def __init__(self):
-        pass
-        
-    def getlibrary(self, actual_dir ,name, liburl, version='latest'):
-        """funcion para manejar la descarga de la libreria comprimida y su descompresion y ubicacion"""
-        # necesario para acceder al espacio release de github
+    def getlibrary(self, actual_dir, name, liburl, version='latest'):
+        """Metodo para manejar la descarga del paquete comprimido, su
+        descompresion y ubicación"""
+
+        # Necesario para acceder al espacio release de github
         if version == 'latest':
             aux = '/releases/latest/download'
             url = urllib.request.Request(f"{liburl}{aux}/{name}.zip")
         else:
             aux = '/releases/download/'
-        # conformando la peticion con todas las variantes
-        
+
+            # Conformando la petición con todas las variantes.
             url = urllib.request.Request(f"{liburl}{aux}{version}/{name}.zip")
-        # conformando la peticion con todas las variantes
-        chdir(os.path.realpath(f'{actual_dir}'))
-        #print("path actual es" + os.getcwd())
-        try:
-            # creando directorio para almacenar los paquetes en local
+
+        if not exists('modulos'):
+            # Creando directorio para almacenar los paquetes en local.
             mkdir('modulos')
 
-        except OSError as e:
-            # continuando en caso de que el directorio modulos ya exista
-            if e.errno != errno.EEXIST:
-                print(e)
-
         try:
-            # descargando release comprimido
+            # Descargando release comprimida.
             response = urllib.request.urlopen(url)
-            
-            if response.getcode() != 200:
-                return "error. verifique que a escrito la version correctamente"
-        except urllib.error.HTTPError as e:
-             print("version de la libreria incorrecta")
-             return False
 
-        with open(f'./modulos/{name}.zip', 'wb') as lib:
-            # creando archivo comprimido temporal
-            lib.write(response.read())
-            print('libreria instalada')
-        # extrayendo el comprimido
-        zipx = ZipFile(f'./modulos/{name}.zip', 'r')
-        try:
-            # crenado carpeta con el nombre de la libreria descargada
-            mkdir(f'./modulos/{name}')
-            # extrayendo todos los archivos dentro de la carpeta anterior
-            zipx.extractall(f'./modulos/{name}')
-        except OSError as e:
-            if e.errno != errno.EEXIST:
-                print(e)
-            else:
-                pass
-        finally:
-            # eliminando el comprimido temporal
-            remove(f'./modulos/{name}.zip')
-            
-    
-    
-    
-    
-    
+            if response.getcode() != 200:
+                print(
+                    'ERROR: Verifique que haya escrito la versión '
+                    'correctamente.')
+                return False
+
+        except urllib.error.HTTPError as e:
+            print('ERROR: Versión del paquete incorrecta.')
+            return False
+
+        with ZipFile(BytesIO(response.read()), 'r') as zipx:
+            # Extrayendo el comprimido
+            if exists(f'modulos/{name}'):
+                shutil.rmtree(f'modulos/{name}')
+                mkdir(f'modulos/{name}')
+
+            zipx.extractall(f'modulos/{name}')
+            print('INFO: Paquete instalado.')
+
+
 if __name__ == '__main__':
     p = paqAdm()
-    p.getlibrary(sys.argv[1],sys.argv[2])
-    
-    
+    p.getlibrary(sys.argv[1], sys.argv[2])
