@@ -11,7 +11,7 @@ class RepoDownload(unittest.TestCase):
             """test para la funcion que descarga el repositorio"""
             direct = os.path.dirname(os.path.realpath(__file__))
             repo = repoAdm()
-            res = repo.getrepo(direct)
+            res = repo.getrepo()
             
             """comprobando que el archivo de repositorio se descarga correctamente"""
             self.assertTrue(os.path.exists('./repo/main.json'))
