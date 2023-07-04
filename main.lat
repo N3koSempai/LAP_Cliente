@@ -1,0 +1,43 @@
+// LAP latino administrador de paquetes.
+// creado por Alvaro @N3koSempai
+// https://github.com/N3koSempai/LAP_Cliente
+
+fun descargar_repo()
+    resultado = sis.ejecutar("bash ./modulos/aux/get.sh ")
+fin
+
+
+fun pre_instalar(nombre)
+    // obtener json del archivo repo/main.json y convertir a diccionario
+    repo = sis.ejecutar("bash ./modulos/aux/obtener_lista.sh")
+    escribir(repo)
+fin 
+
+
+
+fun instalar(nombre)
+    // actualizar repo
+
+
+    descargar_repo()
+    pre_instalar()
+    
+fin
+
+
+
+
+escribir("LAP version 0.6.0")
+escribir("escribe el comando que deseas ejecutar ")
+escribir("ejemplo: instalar paquete y presiona enter")
+escribir("donde paquete es el nombre de la libreria")
+escribir("escribe ayuda para obtener los comandos disponibles")
+comando = leer()
+comando = cadena.recortar(comando)
+decision = cadena.separar(comando, ' ')
+
+
+si decision[0] == 'instalar'
+    instalar(decision[1])
+fin
+
